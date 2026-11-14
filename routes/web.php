@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $notes = DB::table('zdt_notes')->orderByDesc('id')->limit(10)->get();
-    $jobs = DB::table('zdt_events')->where('kind', 'job')->orderByDesc('id')->limit(10)->get();
-    $beats = DB::table('zdt_events')->where('kind', 'schedule')->orderByDesc('id')->limit(5)->get();
-    $release = trim(@file_get_contents(base_path('worker-release.txt')) ?: 'unknown');
-    return response()->view('zdt', compact('notes', 'jobs', 'beats', 'release'));
+    abort(500, 'intentional ZDT failing deploy');
 });
 
 Route::get('/notes/create', function (Request $request) {
